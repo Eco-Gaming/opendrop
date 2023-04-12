@@ -106,7 +106,9 @@ class AirDropCli:
             else:  # args.action == 'send'
                 if args.file is None:
                     parser.error("Need -f,--file when using send")
-                if not os.path.isfile(args.file) and not args.url:
+                if os.path.isdir(args.file) and not args.url:
+                    parser.error("Arguments in -f,--file cannot be a directory")
+                elif not os.path.isfile(args.file) and not args.url:
                     parser.error("File in -f,--file not found")
                 self.file = args.file
                 self.is_url = args.url
