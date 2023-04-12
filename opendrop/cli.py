@@ -67,6 +67,9 @@ class AirDropCli:
         parser.add_argument(
             "-i", "--interface", help="Which AWDL interface to use", default="awdl0"
         )
+        parser.add_argument(
+            "-k", "--psk", help="PEM pass phrase", default=None
+        )
         args = parser.parse_args(args)
 
         if args.debug:
@@ -86,6 +89,7 @@ class AirDropCli:
             computer_model=args.model,
             debug=args.debug,
             interface=args.interface,
+            psk=args.psk,
         )
         self.server = None
         self.client = None
